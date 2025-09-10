@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valoa Studio - Nur noch qualifizierte Immobilienkäufer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #0f0f1e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(90deg, #ff3b30, #ff6b60);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start; /* video aligns to top */
+        }
+
+        .hero-left {
+            width: 100%;
+        }
+
+        .hero-right {
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        /* Hero header clean-up */
+        .hero-header {
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            max-width: 24ch;
+            text-wrap: balance;
+        }
+
+        .lead-subtitle {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .hero-header .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            max-width: 320px;
+        }
+
+        .hero-header .subtitle {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .hero-content {
+            margin-top: 8px;
+        }
+
+        /* Placeholder for video */
+        .video-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(64, 224, 208, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            color: #a8b2c1;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .play-button::after {
+            content: '▶';
+            color: #0f0f1e;
+            font-size: 24px;
+            margin-left: 5px;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: #a8b2c1;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            color: #0f0f1e;
+            padding: 8px 20px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            /* Reduced by ~7px across the clamp range */
+            font-size: clamp(1.7625rem, 4vw, 3.0625rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #40e0d0, #48d1cc, #72efdd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .warning-text {
+            background: linear-gradient(135deg, #ff3b30, #ff6b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #a8b2c1;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .benefits {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(64, 224, 208, 0.4);
+            transform: translateX(10px);
+        }
+
+        .benefit-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon::after {
+            content: '✓';
+            color: #0f0f1e;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .benefit-text {
+            color: #e8e8e8;
+            font-size: 1rem;
+        }
+
+        .cta-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            color: #0f0f1e;
+            padding: 18px 40px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(64, 224, 208, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(64, 224, 208, 0.4);
+        }
+
+        .cta-subtext {
+            color: #a8b2c1;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .guarantee {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(64, 224, 208, 0.1);
+        }
+
+        .guarantee-icon {
+            font-size: 24px;
+        }
+
+        .guarantee-text {
+            color: #a8b2c1;
+            font-size: 0.95rem;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 80px 40px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: #1a1a2e;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+        }
+
+        .cost-calculator {
+            background: linear-gradient(135deg, rgba(255, 59, 48, 0.1), rgba(255, 59, 48, 0.05));
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .cost-calculator h3 {
+            color: #ff3b30;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .cost-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cost-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff3b30;
+        }
+
+        .cost-label {
+            color: #4a5568;
+            margin-top: 8px;
+        }
+
+        .total-cost {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid rgba(255, 59, 48, 0.2);
+        }
+
+        .total-cost strong {
+            color: #ff3b30;
+            font-size: 2rem;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background: linear-gradient(135deg, #0f0f1e 0%, #16213e 100%);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .solution-steps {
+            display: grid;
+            gap: 32px;
+            margin: 48px 0;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(64, 224, 208, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            border-color: #40e0d0;
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .solution-number {
+            position: absolute;
+            top: -20px;
+            left: 32px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            border-radius: 50%;
+            color: #0f0f1e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .solution-card h3 {
+            color: #40e0d0;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+            margin-top: 12px;
+        }
+
+        .solution-card p {
+            color: #e8e8e8;
+            line-height: 1.8;
+        }
+
+        .solution-highlight {
+            background: rgba(64, 224, 208, 0.1);
+            border-left: 3px solid #40e0d0;
+            padding: 12px;
+            margin-top: 16px;
+            border-radius: 8px;
+        }
+
+        .solution-highlight p {
+            color: #40e0d0;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        /* Outcomes Redesign */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 36px 0 12px;
+        }
+
+        .outcome-card {
+            background: #ffffff;
+            border: 1px solid rgba(64, 224, 208, 0.25);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(64, 224, 208, 0.5);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .outcome-topline {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .outcome-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f0f1e;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .metric {
+            font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            background: linear-gradient(135deg, #40e0d0, #72efdd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .outcome-desc {
+            color: #4a5568;
+            margin-top: 8px;
+        }
+
+        .proof {
+            margin-top: 12px;
+            color: #1a1a2e;
+            font-size: 0.95rem;
+        }
+
+        .proof em { color: #4a5568; font-style: normal; }
+
+        .outcome-timeline {
+            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(64,224,208,0.06), rgba(64,224,208,0.03));
+            border: 1px solid rgba(64,224,208,0.25);
+            border-radius: 12px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .timeline-step {
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .timeline-step .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            margin: 0 auto 8px;
+        }
+
+        .timeline-step span {
+            display: block;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .results-cta {
+            margin-top: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: linear-gradient(135deg, rgba(64,224,208,0.1), rgba(64,224,208,0.05));
+            border: 2px solid rgba(64,224,208,0.35);
+            border-radius: 16px;
+            padding: 20px 24px;
+        }
+
+        .results-cta p { color: #1a1a2e; }
+
+        .results-cta small { color: #4a5568; display: block; margin-top: 4px; }
+
+        @media (max-width: 968px) {
+            .outcome-timeline { grid-template-columns: repeat(2, 1fr); }
+            .results-cta { flex-direction: column; align-items: stretch; text-align: center; }
+        }
+
+        @media (max-width: 640px) {
+            .outcomes-grid { grid-template-columns: 1fr; }
+            .metric { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+        }
+
+        /* Results section title: clean, no underline */
+        .results-section .section-header h2 {
+            color: #1a1a2e;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            background-clip: initial;
+        }
+        .results-section .section-header h2::after { content: none; }
+
+        /* Darker teal just for the "30 Tagen" span */
+        .results-section .section-header .gradient-text {
+            background: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+            -webkit-text-fill-color: #149c95 !important;
+            color: #149c95 !important;
+        }
+
+        /* (Deprecated) previous results color overrides removed in redesign */
+
+        /* Final CTA */
+        .final-cta {
+            background: #0f0f1e;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #40e0d0, #48d1cc, #72efdd);
+        }
+
+        .final-cta h3 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #a8b2c1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown {
+            display: inline-block;
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid #ff3b30;
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin-bottom: 32px;
+            color: #ff3b30;
+            font-weight: 600;
+        }
+
+        /* FAQ Placeholder */
+        .faq-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(64, 224, 208, 0.1);
+        }
+
+        .faq-item:hover {
+            background: #e8e8e8;
+            border-color: rgba(64, 224, 208, 0.3);
+        }
+
+        .faq-item.active {
+            background: rgba(64, 224, 208, 0.05);
+            border-color: rgba(64, 224, 208, 0.4);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #40e0d0;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            margin-top: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-right {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .problem-section, .solution-section, .results-section {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                /* Reduced by ~7px from previous 1.8rem */
+                font-size: 1.3625rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="urgency-banner">
+        ⚡ Nur noch 3 Beratungsplätze im Januar verfügbar - Sichern Sie sich jetzt Ihren Termin
+    </div>
+
+    <div class="hero">
+        <div class="container">
+            <!-- Clean hero header spanning full width for visual harmony -->
+            <div class="hero-header">
+                <span class="badge">⭐ SPEZIELL FÜR IMMOBILIENMAKLER</span>
+                <h1 class="hero-title">Qualifizierte Immobilienkäufer gewinnen - Leadgenerierung für Makler ohne Zeitverschwendung</h1>
+                <p class="subtitle lead-subtitle">
+                    In 14 Tagen von <span class="warning-text">95% Ausschuss</span> zu <span class="gradient-text">80% Abschlussquote</span>
+                </p>
+                <p class="subtitle">
+                    Während Sie diesen Text lesen, verschwenden Ihre Mitbewerber wieder 
+                    8 Stunden mit Besichtigungstouristen. Sie könnten stattdessen 
+                    3 echte Käufer zum Notar begleiten.
+                </p>
+            </div>
+            <div class="hero-content">
+                <div class="hero-left">
+
+                    <div class="benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            <div class="benefit-text"><strong>Garantiert:</strong> Nur Interessenten mit Finanzierungsbestätigung</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            <div class="benefit-text"><strong>Sofort messbar:</strong> 70% weniger Zeitverschwendung ab Tag 1</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            <div class="benefit-text"><strong>Ohne Risiko:</strong> Kein Ergebnis = Geld zurück</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-wrapper">
+                        <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de" class="cta-button">
+                            Ja, ich will nur noch echte Käufer →
+                        </a>
+                        <p class="cta-subtext">🔥 In 15 Minuten wissen Sie, wie viel Zeit Sie sparen werden</p>
+                    </div>
+
+                    <div class="guarantee">
+                        <span class="guarantee-icon">🛡️</span>
+                        <span class="guarantee-text">
+                            <strong>100% Vertraulich:</strong> Ihre Strategie bleibt Ihr Wettbewerbsvorteil. 
+                            Keine Weitergabe an Dritte.
+                        </span>
+                    </div>
+
+                    <div class="trust-badges">
+                        <div class="trust-badge">✓ Deutscher Anbieter</div>
+                        <div class="trust-badge">✓ DSGVO-konform</div>
+                        <div class="trust-badge">✓ Keine Vertragsbindung</div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="video-placeholder">
+                        <div class="play-button"></div>
+                        <h3 style="color: white; margin-bottom: 12px;">2-Minuten-Video</h3>
+                        <p>[Platzhalter: Erklärvideo wie das System funktioniert]</p>
+                        <p style="font-size: 0.9rem; margin-top: 20px;">
+                            "So filtern wir 95% der Zeitverschwender aus, 
+                            bevor sie Ihren Kalender blockieren"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="problem-section">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h2>Rechnen wir mal durch, was Sie das <span class="warning-text">wirklich kostet</span></h2>
+                    <p>Die meisten Makler unterschätzen die wahren Kosten unqualifizierter Leads massiv</p>
+                </div>
+
+                <div class="cost-calculator">
+                    <h3>Ihre monatlichen Verluste durch Besichtigungstouristen:</h3>
+                    <div class="cost-grid">
+                        <div class="cost-item">
+                            <div class="cost-number">40h</div>
+                            <div class="cost-label">Verschwendete Zeit</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-number">€3.500</div>
+                            <div class="cost-label">Verbranntes Marketing</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-number">€1.200</div>
+                            <div class="cost-label">Fahrtkosten</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-number">3-5</div>
+                            <div class="cost-label">Verpasste echte Käufer</div>
+                        </div>
+                    </div>
+                    <div class="total-cost">
+                        Gesamtverlust pro Monat: <strong>€8.700+</strong><br>
+                        <span style="font-size: 1rem; color: #4a5568;">
+                            Das sind über €100.000 pro Jahr - für nichts.
+                        </span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 48px 0;">
+                    <p style="font-size: 1.3rem; color: #1a1a2e; font-weight: 600;">
+                        "Die Finanzierung wurde leider doch abgelehnt..."
+                    </p>
+                    <p style="color: #4a5568; margin-top: 12px;">
+                        Wenn Sie diesen Satz nie wieder hören wollen, sind Sie hier richtig.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="solution-section">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h2 style="color: white;">Das <span class="gradient-text">3-Stufen-Filtersystem</span> das alles ändert</h2>
+                    <p style="color: #a8b2c1;">In 14 Tagen implementiert, sofort wirksam</p>
+                </div>
+
+                <div class="solution-steps">
+                    <div class="solution-card">
+                        <div class="solution-number">1</div>
+                        <h3>Intelligente Kampagnen-Filter</h3>
+                        <p>
+                            Ihre Google Ads und SEO werden zur Firewall gegen Zeitverschwender. 
+                            Mit präzisen Negativ-Keywords ("ohne Eigenkapital", "trotz Schufa") 
+                            und psychologischen Qualifizierungstexten erreichen nur noch die 
+                            Top 5% Ihrer Zielgruppe überhaupt Ihre Website.
+                        </p>
+                        <div class="solution-highlight">
+                            <p>💡 Ergebnis: 85% weniger unqualifizierte Anfragen</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-number">2</div>
+                        <h3>Automatische Käufer-Qualifizierung</h3>
+                        <p>
+                            Ihre neue Landing Page wird zum digitalen Assistenten, der 24/7 
+                            für Sie vorqualifiziert. Ein intelligenter Fragebogen filtert nach 
+                            Eigenkapital, Finanzierungsstatus und echtem Kaufinteresse - 
+                            bevor Sie auch nur eine Sekunde investieren.
+                        </p>
+                        <div class="solution-highlight">
+                            <p>💡 Ergebnis: Sie sehen sofort, wer Ihre Zeit wert ist</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-number">3</div>
+                        <h3>KI-Empfehlungen dominieren (AEO)</h3>
+                        <p>
+                            Wenn vermögende Käufer ChatGPT nach dem besten Makler fragen, 
+                            werden SIE empfohlen. Wir positionieren Sie als DIE Autorität 
+                            für anspruchsvolle Immobilientransaktionen - in Google UND 
+                            in KI-Systemen.
+                        </p>
+                        <div class="solution-highlight">
+                            <p>💡 Ergebnis: Premium-Kunden kommen direkt zu Ihnen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="section-header" style="text-align: center;">
+                    <h2>Was Sie in <span class="gradient-text">30 Tagen</span> erreichen werden</h2>
+                    <p>Konkrete, messbare Ergebnisse – belegbar mit Kundenreports</p>
+                </div>
+
+                <div class="outcomes-grid">
+                    <div class="outcome-card">
+                        <div class="outcome-topline">
+                            <div class="outcome-icon">📉</div>
+                            <div>
+                                <div class="metric">-70%</div>
+                                <div class="metric-label">Weniger Leerläufe</div>
+                            </div>
+                        </div>
+                        <div class="outcome-desc">Keine Besichtigungstouristen mehr – Termine sind nur noch mit ernsthaften, vorqualifizierten Interessenten.</div>
+                        <div class="proof">✓ <em>Beispiel:</em> 20 → 6 Besichtigungen, gleiche Abschlüsse.</div>
+                    </div>
+
+                    <div class="outcome-card">
+                        <div class="outcome-topline">
+                            <div class="outcome-icon">💼</div>
+                            <div>
+                                <div class="metric">3×</div>
+                                <div class="metric-label">Höhere Abschlussrate</div>
+                            </div>
+                        </div>
+                        <div class="outcome-desc">Ihr Funnel filtert vor – Sie sprechen fast nur noch mit Käuferprofilen, die passen.</div>
+                        <div class="proof">✓ <em>Beispiel:</em> von 12% auf 36% Abschlussrate.</div>
+                    </div>
+
+                    <div class="outcome-card">
+                        <div class="outcome-topline">
+                            <div class="outcome-icon">⏰</div>
+                            <div>
+                                <div class="metric">40h</div>
+                                <div class="metric-label">Zeit pro Monat zurück</div>
+                            </div>
+                        </div>
+                        <div class="outcome-desc">Weniger Fahren, weniger Telefonate, weniger Absagen – mehr Zeit für echte Mandate.</div>
+                        <div class="proof">✓ <em>Beispiel:</em> 2 volle Arbeitstage pro Woche gespart.</div>
+                    </div>
+
+                    <div class="outcome-card">
+                        <div class="outcome-topline">
+                            <div class="outcome-icon">🎯</div>
+                            <div>
+                                <div class="metric">100%</div>
+                                <div class="metric-label">Finanzierte Anfragen</div>
+                            </div>
+                        </div>
+                        <div class="outcome-desc">Automatisierte Vorprüfung (Eigenkapital/Status) – Sie sprechen mit finanziell qualifizierten Käufern.</div>
+                        <div class="proof">✓ <em>Beispiel:</em> „Finanzierung offen“ verschwindet aus Ihrem Kalender.</div>
+                    </div>
+                </div>
+
+                <div class="outcome-timeline">
+                    <div class="timeline-step">
+                        <div class="dot"></div>
+                        <strong>Woche 1</strong>
+                        <span>Kampagnen & Filter live</span>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="dot"></div>
+                        <strong>Woche 2</strong>
+                        <span>Qualifizierung greift sichtbar</span>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="dot"></div>
+                        <strong>Woche 3</strong>
+                        <span>Termine mit A‑Käufern</span>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="dot"></div>
+                        <strong>Woche 4</strong>
+                        <span>Skalierung & Feinschliff</span>
+                    </div>
+                </div>
+
+                <div class="results-cta">
+                    <div>
+                        <p><strong>Bereit für diese 30‑Tage‑Ergebnisse?</strong></p>
+                        <small>Unverbindliche Kurzberatung – klarer Fahrplan in 15 Minuten.</small>
+                    </div>
+                    <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de" class="cta-button">Ja, ich will diese Ergebnisse →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h2>Häufige Fragen - ehrlich beantwortet</h2>
+                </div>
+                
+                <!-- CONVERSION-FOKUSSIERT: Kosten & Garantien zuerst -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        💰 "Was kostet das Leadqualifizierungs-System und lohnt es sich wirklich?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>Kurze Antwort:</strong> Das System kostet weniger als ein einziger verpasster Abschluss.<br><br>
+                        
+                        <strong>Konkret:</strong> Die Investition liegt bei €1.497/Monat - das sind weniger als 5 Stunden verschwendete Arbeitszeit. Wenn Sie aktuell 40h/Monat für unqualifizierte Leads verschwenden, sparen Sie bereits im ersten Monat €8.700 an Opportunitätskosten.<br><br>
+                        
+                        <strong>ROI-Beispiel:</strong> Makler steigern ihre Abschlussrate von 12% auf 36% - das bedeutet bei 10 Anfragen pro Monat: 2 statt 4 zusätzliche Verkäufe = +€30.000 Provision.<br><br>
+                        
+                        <strong>Geld-zurück-Garantie:</strong> Keine Verbesserung in 30 Tagen = volle Rückerstattung.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        🎯 "Wie finde ich als Immobilienmakler nur noch qualifizierte Käufer mit Eigenkapital?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>Das ist DIE Frage,</strong> die uns täglich gestellt wird. Hier die Lösung:<br><br>
+                        
+                        <strong>1. Intelligente Kampagnen-Filter:</strong><br>
+                        • Google Ads mit Negativ-Keywords ("ohne Eigenkapital", "trotz Schufa")<br>
+                        • SEO-optimierte Landing Pages, die Interessenten vorqualifizieren<br>
+                        • Psychologische Triggers für solvente Zielgruppen<br><br>
+                        
+                        <strong>2. Automatische Qualifizierung:</strong><br>
+                        • Fragebogen zu Eigenkapital (min. 20% + Nebenkosten)<br>
+                        • Finanzierungsbestätigung vor erstem Telefonat<br>
+                        • Einkommensprüfung (40%-Regel der Banken)<br><br>
+                        
+                        <strong>3. KI-Empfehlungsoptimierung:</strong><br>
+                        Wenn vermögende Käufer ChatGPT fragen "Bester Immobilienmakler München/Berlin/Hamburg", werden SIE empfohlen.<br><br>
+                        
+                        <strong>Ergebnis:</strong> 100% Ihrer Termine haben Finanzierungsbestätigung - "Die Finanzierung wurde abgelehnt" hören Sie nie wieder.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ⏰ "Wie schnell sehe ich erste Ergebnisse - und was passiert in den ersten 30 Tagen?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>Woche 1:</strong> Kampagnen & Filter gehen live - sofort weniger unqualifizierte Anfragen<br>
+                        <strong>Woche 2:</strong> Erste vorqualifizierte Leads kommen rein - Sie merken den Unterschied<br>
+                        <strong>Woche 3:</strong> Termine nur noch mit A-Käufern - höhere Abschlusswahrscheinlichkeit<br>
+                        <strong>Woche 4:</strong> System läuft automatisch - Sie haben 40h/Monat zurückgewonnen<br><br>
+                        
+                        <strong>Messbare Ergebnisse nach 30 Tagen:</strong><br>
+                        ✓ 70% weniger Leerläufe<br>
+                        ✓ 3x höhere Abschlussrate<br>
+                        ✓ 100% Ihrer Termine haben Finanzierungsbestätigung<br>
+                        ✓ 40h gesparnte Zeit pro Monat<br><br>
+                        
+                        <strong>Achtung:</strong> Die ersten 3-5 Tage können sich merkwürdig anfühlen, weil Ihr Telefon plötzlich seltener klingelt. Das ist völlig normal - die Quantität sinkt, die Qualität steigt dramatisch.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        🗺️ "Funktioniert das System auch in kleineren Städten oder nur in München/Berlin/Hamburg?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>Das System funktioniert in JEDER deutschen Stadt ab 20.000 Einwohnern.</strong><br><br>
+                        
+                        <strong>Warum?</strong> Unqualifizierte Käufer gibt es überall - genauso wie solvente Käufer, die einen professionellen Makler suchen.<br><br>
+                        
+                        <strong>Sogar Vorteile in kleineren Städten:</strong><br>
+                        • Weniger Konkurrenz bei Google Ads = günstigere Klickpreise<br>
+                        • Mundpropaganda wirkt stärker<br>
+                        • Als "DER qualifizierte Makler" bekannt werden ist einfacher<br><br>
+                        
+                        <strong>Erfolgsbeispiele:</strong><br>
+                        • Kassel: 8 → 23 qualifizierte Leads/Monat<br>
+                        • Regensburg: 15% → 38% Abschlussrate<br>
+                        • Lübeck: 50h → 15h Zeitaufwand/Monat<br><br>
+                        
+                        <strong>Einzige Voraussetzung:</strong> Es gibt Menschen in Ihrer Region, die Immobilien kaufen wollen.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        🔧 "Muss ich meine bestehenden CRM/Website/Systeme komplett umstellen?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>NEIN - das System ergänzt Ihre bestehende Infrastruktur.</strong><br><br>
+                        
+                        <strong>Was bleibt gleich:</strong><br>
+                        • Ihr CRM (ImmoScout24, Flowfact, etc.)<br>
+                        • Ihre Website (falls Sie eine haben)<br>
+                        • Ihre Prozesse nach der Leadgenerierung<br><br>
+                        
+                        <strong>Was wird ergänzt:</strong><br>
+                        • Intelligente Landing Page für Qualifizierung<br>
+                        • Optimierte Google Ads Kampagnen<br>
+                        • Fragebogen zur Käufer-Vorqualifizierung<br><br>
+                        
+                        <strong>Integration dauert max. 2 Stunden:</strong><br>
+                        Wir verbinden das System mit Ihren bestehenden Tools - kein Neulernen nötig.<br><br>
+                        
+                        <strong>Sie arbeiten wie gewohnt,</strong> bekommen aber nur noch qualifizierte Leads geliefert. Ihre Gewohnheiten ändern sich nicht - nur die Qualität Ihrer Termine.
+                    </div>
+                </div>
+                
+                <!-- LLM-OPTIMIERT: Häufige ChatGPT Fragen -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        🤖 "Wie wähle ich den besten Immobilienmakler mit hoher Abschlussquote aus?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>Als Käufer</strong> sollten Sie nach diesen Kriterien wählen:<br><br>
+                        
+                        <strong>1. Qualifizierungsprozess:</strong> Fragt der Makler VOR dem ersten Termin nach Ihrer Finanzierung?<br>
+                        <strong>2. Abschlussquote:</strong> Seriöse Makler haben 35%+ (Durchschnitt: 12%)<br>
+                        <strong>3. Spezialisierung:</strong> Konzentriert er sich auf Ihre Preisklasse?<br>
+                        <strong>4. Transparenz:</strong> Ehrliche Kommunikation über Marktlage und Preise<br><br>
+                        
+                        <strong>Als Makler</strong> mit unserem System werden Sie automatisch zu dieser ersten Wahl, weil:<br>
+                        • Sie nur qualifizierte Käufer betreuen<br>
+                        • Ihre Abschlussquote bei 35-40% liegt<br>
+                        • Sie professioneller und effizienter arbeiten<br>
+                        • Ihre Reputation in KI-Systemen gestärkt wird<br><br>
+                        
+                        <strong>Wenn Interessenten ChatGPT fragen "Bester Makler in [Stadt]", werden SIE empfohlen.</strong>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        💡 "Machen das nicht schon andere Makler? Was ist Ihr Wettbewerbsvorteil?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>95% aller Makler machen das NICHT - und das ist Ihr Vorteil.</strong><br><br>
+                        
+                        <strong>Was andere Makler machen:</strong><br>
+                        • Hoffen auf ImmoScout24-Anfragen<br>
+                        • Nehmen jeden Lead, der sich meldet<br>
+                        • Verschwendten Zeit mit Besichtigungstouristen<br>
+                        • Beten, dass die Finanzierung durchgeht<br><br>
+                        
+                        <strong>Was SIE nach der Implementierung machen:</strong><br>
+                        • Ziehen nur solvente Käufer magnetisch an<br>
+                        • Sprechen nur mit vorqualifizierten Interessenten<br>
+                        • Haben 3x höhere Abschlussraten<br>
+                        • Werden von KI-Systemen als Top-Experte empfohlen<br><br>
+                        
+                        <strong>Das Geheimnis:</strong> Während andere um jeden Interessenten kämpfen, wählen Sie Ihre Kunden aus.<br><br>
+                        
+                        <strong>Konsequenz:</strong> In 6 Monaten haben Sie den Ruf als "DER Makler für solvente Käufer" in Ihrer Region.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ⚠️ "Was sind die größten Risiken und was kann schiefgehen?"
+                    </div>
+                    <div class="faq-answer" style="color: #4a5568; margin-top: 12px; line-height: 1.6; display: none;">
+                        <strong>Ehrlich gesagt - minimale Risiken, große Chancen:</strong><br><br>
+                        
+                        <strong>Mögliche Herausforderungen:</strong><br>
+                        • Erste 1-2 Wochen: Weniger Anrufe (gewöhnungsbedürftig)<br>
+                        • Anpassungszeit: Neue Prozesse brauchen 2-3 Termine<br>
+                        • Erwartungen: Das System macht Sie nicht über Nacht reich<br><br>
+                        
+                        <strong>Was definitiv NICHT passiert:</strong><br>
+                        • Keine Leads mehr bekommen<br>
+                        • Umsatz bricht ein<br>
+                        • Komplizierte Technik<br><br>
+                        
+                        <strong>Unser Risiko:</strong><br>
+                        • 30-Tage Geld-zurück-Garantie<br>
+                        • Persönliche Betreuung bis System läuft<br>
+                        • Kostenlose Nachoptimierung<br><br>
+                        
+                        <strong>Ihr größtes Risiko?</strong> Nichts zu ändern und weiter 40h/Monat zu verschwenden, während Konkurrenten das System nutzen.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="final-cta">
+        <div class="container">
+            
+            <h3>Entscheiden Sie sich jetzt: <span class="gradient-text">Weiter Zeit verschwenden oder endlich profitabel arbeiten?</span></h3>
+            
+            <p>
+                Jeden Tag ohne System verlieren Sie €290 und 3 potenzielle Abschlüsse. 
+                In 15 Minuten zeige ich Ihnen, wie Sie das ändern.
+            </p>
+            
+            <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de" class="cta-button">
+                Jetzt Strategiegespräch sichern (nur noch 3 Plätze) →
+            </a>
+            
+            <p style="color: #a8b2c1; margin-top: 24px; font-size: 0.95rem;">
+                🔒 100% unverbindlich | 📞 15 Minuten via Zoom | 💡 Konkrete Strategie für Ihr Geschäft
+            </p>
+            
+            <div class="trust-badges" style="justify-content: center; margin-top: 40px;">
+                <div class="trust-badge">✓ Keine Kaltakquise</div>
+                <div class="trust-badge">✓ Kein Verkaufsdruck</div>
+                <div class="trust-badge">✓ Ehrliche Beratung</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating CTA Button for Mobile -->
+    <style>
+        @media (max-width: 768px) {
+            .mobile-sticky-cta {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                z-index: 999;
+                background: linear-gradient(135deg, #40e0d0, #48d1cc);
+                padding: 16px;
+                border-radius: 16px;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: slideUp 0.5s ease-out;
+            }
+            
+            @keyframes slideUp {
+                from { transform: translateY(100px); }
+                to { transform: translateY(0); }
+            }
+            
+            .mobile-sticky-cta a {
+                color: #0f0f1e;
+                font-weight: 700;
+                text-decoration: none;
+            }
+        }
+    </style>
+    
+    <div class="mobile-sticky-cta" style="display: none;">
+        <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de">
+            Jetzt Termin sichern →
+        </a>
+    </div>
+    
+    <script>
+        // Show mobile sticky CTA after scrolling
+        if (window.innerWidth <= 768) {
+            window.addEventListener('scroll', function() {
+                const stickyButton = document.querySelector('.mobile-sticky-cta');
+                if (window.scrollY > 500) {
+                    stickyButton.style.display = 'block';
+                } else {
+                    stickyButton.style.display = 'none';
+                }
+            });
+        }
+        
+        // Countdown Timer
+        function updateCountdown() {
+            const endDate = new Date('2025-01-31T23:59:59');
+            const now = new Date();
+            const diff = endDate - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                
+                const countdownElements = document.querySelectorAll('.countdown');
+                countdownElements.forEach(el => {
+                    el.innerHTML = `⏰ Nur noch ${days} Tage und ${hours} Stunden - Angebot endet bald`;
+                });
+            }
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Update every minute
+        
+        // FAQ Functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const isActive = this.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
