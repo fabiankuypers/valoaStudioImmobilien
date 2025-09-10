@@ -15,40 +15,40 @@ Basierend auf der Forschung zu KI-Videogenerierung und den technischen Beschrän
 - **Midjourney** (empfohlen) oder Adobe Firefly
 - **Alternative:** DALL-E 3, Stable Diffusion
 
-### **Character Sheet Prompts für "Marc" (Immobilienmakler):**
+### **Character Sheet Prompts für "Marc" (Zeichentrick-Immobilienmakler):**
 
 ```
 MASTER PROMPT (für Midjourney):
-"Professional real estate agent Marc, 35-40 years old, short dark hair with slight gray temples, friendly face, wearing white business shirt and dark pants, clean modern style, character sheet showing front view, side profile, and 3/4 angle, consistent lighting, white background --style raw --ar 16:9 --v 6"
+"2D cartoon character Marc, friendly real estate agent, simple cartoon style like Dropbox explainer videos, clean vector art, 35-40 years old, short dark hair, big expressive eyes, wearing simple white business shirt, mobile-friendly design, character sheet showing front view, side profile, and 3/4 angle, flat colors, white background --style raw --ar 9:16 --v 6 --niji 6"
 ```
 
 ### **Variationen für Character Sheet:**
 
-**1. Basis-Referenzbilder:**
+**1. Basis-Referenzbilder (Zeichentrick):**
 ```
-"Marc the real estate agent, front view, neutral expression, white business shirt, dark pants --style raw --ar 1:1"
+"2D cartoon Marc, front view, neutral expression, simple vector style like Slack animations, white business shirt, big eyes, mobile-friendly --style raw --ar 9:16 --niji 6"
 
-"Marc the real estate agent, side profile, same clothing, consistent style --style raw --ar 1:1"
+"2D cartoon Marc, side profile, same cartoon character, consistent flat color style --style raw --ar 9:16 --niji 6"
 
-"Marc the real estate agent, 3/4 angle, slight smile, same styling --style raw --ar 1:1"
-```
-
-**2. Emotionale Varianten:**
-```
-"Marc looking frustrated and stressed, sitting at desk, same character design --style raw --ar 16:9"
-
-"Marc looking tired and overwhelmed, same character, consistent styling --style raw --ar 16:9"
-
-"Marc happy and confident, same character design, triumphant expression --style raw --ar 16:9"
+"2D cartoon Marc, 3/4 angle, slight smile, same vector design, explainer video style --style raw --ar 9:16 --niji 6"
 ```
 
-**3. Situative Posen:**
+**2. Emotionale Varianten (für Mobile lesbar):**
 ```
-"Marc talking on phone, professional posture, same character design --style raw --ar 16:9"
+"2D cartoon Marc looking shocked and frustrated, sitting at modern desk, exaggerated cartoon expressions, big eyes wide, same character design --style raw --ar 9:16 --niji 6"
 
-"Marc in car driving, same character, through windshield view --style raw --ar 16:9"
+"2D cartoon Marc looking tired and overwhelmed, same vector character, droopy cartoon eyes, consistent styling --style raw --ar 9:16 --niji 6"
 
-"Marc shaking hands with clients, same character design --style raw --ar 16:9"
+"2D cartoon Marc happy and celebrating, same character design, big cartoon smile, arms raised triumphantly --style raw --ar 9:16 --niji 6"
+```
+
+**3. Situative Posen (9:16 optimiert):**
+```
+"2D cartoon Marc talking on phone, sitting at desk, phone clearly visible, same vector character design, vertical composition --style raw --ar 9:16 --niji 6"
+
+"2D cartoon Marc driving car, view through windshield, same cartoon character, simple background, mobile-optimized --style raw --ar 9:16 --niji 6"
+
+"2D cartoon Marc shaking hands with cartoon clients, same character design, friendly business scene, vertical frame --style raw --ar 9:16 --niji 6"
 ```
 
 ### **Qualitätskontrolle:**
@@ -70,35 +70,36 @@ MASTER PROMPT (für Midjourney):
 4. **Stil-Anweisungen**
 5. **Technische Parameter**
 
-### **UNIVERSELLE CHARAKTER-BESCHREIBUNG:**
+### **UNIVERSELLE CHARAKTER-BESCHREIBUNG (ZEICHENTRICK):**
 ```
-"Marc, professional real estate agent, 35-40 years old, short dark hair with gray temples, friendly face, white business shirt, dark pants"
-```
-
-### **CLIP-SPEZIFISCHE PROMPTS:**
-
-**Clip 1: Gestresster Marc am Schreibtisch**
-```
-"Marc, professional real estate agent, 35-40 years old, short dark hair with gray temples, friendly face, white business shirt, dark pants, sitting frustrated at modern office desk with computer and ringing phone, stress visible on face, 2D animation style, clean modern office background, smooth camera movement, 8 seconds, 1920x1080"
+"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design"
 ```
 
-**Clip 2: Marc bei Telefonaten**
+### **CLIP-SPEZIFISCHE PROMPTS (9:16 + LINKEDIN-OPTIMIERT):**
+
+**Clip 1: LinkedIn-Hook mit ChatGPT-Bezug**
 ```
-"Marc, professional real estate agent, 35-40 years old, short dark hair with gray temples, friendly face, white business shirt, dark pants, talking on phone while taking notes, looking increasingly tired, same office setting as previous clip, 2D animation style, consistent lighting, 8 seconds"
+"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design, sitting at desk looking curious about ChatGPT on computer screen, 2D explainer video style, mobile-friendly vertical composition, 8 seconds, 1080x1920"
 ```
 
-**Clip 3: Marc beim Autofahren**
+**Clip 2: Schockierend niedrige Abschlussquote**
 ```
-"Marc, professional real estate agent, 35-40 years old, short dark hair with gray temples, friendly face, white business shirt, dark pants, driving car between different house viewings, view from passenger seat showing his profile, multiple houses in background, 2D animation style, daytime lighting, 8 seconds"
+"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design, looking shocked at computer showing '12% success rate', exaggerated cartoon expression, same office setting, 2D animation style, large text visible on mobile, 8 seconds"
 ```
 
-### **KONSISTENZ-REGELN FÜR ALLE CLIPS:**
+**Clip 3: ChatGPT Interface zeigt niedrige Quote**
+```
+"2D cartoon style ChatGPT interface showing '12% success rate' with cartoon Marc looking disappointed, simple vector graphics, mobile-readable text, explainer video style, consistent character design as previous clips, vertical 9:16 composition, 6 seconds"
+```
+
+### **KONSISTENZ-REGELN FÜR ALLE CLIPS (MOBILE + ZEICHENTRICK):**
 
 1. **NIEMALS die Grundbeschreibung ändern**
-2. **Identische Kleidung in jedem Prompt**
-3. **Konsistente Alters- und Aussehen-Beschreibung**
-4. **Gleicher Stil-Marker: "2D animation style"**
-5. **Bei Problemen: Referenzbild aus Phase 1 hochladen**
+2. **Immer "2D cartoon" und "vector style" erwähnen**
+3. **Konsistente "big expressive eyes" für mobile Lesbarkeit**
+4. **9:16 Format IMMER: "vertical composition, 1080x1920"**
+5. **LinkedIn-Context beibehalten wo relevant**
+6. **Bei Problemen: Zeichentrick-Referenzbild aus Phase 1 hochladen**
 
 ---
 
@@ -234,18 +235,35 @@ Track 3: Sound Effects (optional, Freesound.org)
 
 ---
 
+## **MOBILE-FIRST BESONDERHEITEN (LINKEDIN-TRAFFIC)**
+
+### **Kritische Mobile-Optimierungen:**
+- **Text-Größe:** Minimum 24px für mobile Lesbarkeit
+- **Kontrast:** Hoher Kontrast zwischen Text und Hintergrund
+- **Animationsgeschwindigkeit:** Langsamer als Desktop (mobile Verarbeitung)
+- **Erste 3 Sekunden:** Hook muss auf 5-Zoll-Screen funktionieren
+- **Vertikaler Fokus:** Wichtige Elemente in oberen 2/3 des Frames
+
+### **LinkedIn-Spezifische Anpassungen:**
+- **Referenz auf "ChatGPT-Tipps" in ersten 5 Sekunden**
+- **CTA zeigt nach unten** (zu Kommentaren/Link)
+- **Professioneller Ton** (LinkedIn-Audience)
+- **Zahlen groß und prominent** (mobile Sichtbarkeit)
+
+---
+
 ## **ERWARTUNGSMANAGEMENT**
 
-### **Realistische Ergebnisse:**
-- **80-90% Charakterkonsistenz** bei sorgfältiger Umsetzung
-- **2-3 Re-Rolls** pro Clip normal
-- **Gesamtproduktionszeit:** 15-20 Stunden
-- **Qualität:** Professionell, aber erkennbar KI-generiert
+### **Realistische Ergebnisse (Mobile + Zeichentrick):**
+- **85-95% Charakterkonsistenz** bei Zeichentrick (einfacher als Photorealismus)
+- **1-2 Re-Rolls** pro Clip (Cartoon-Stil verzeiht mehr)
+- **Gesamtproduktionszeit:** 12-15 Stunden
+- **Qualität:** Professionell, Zeichentrick-Stil verschleiert KI-Artefakte
 
 ### **Wenn perfekte Konsistenz kritisch ist:**
-- **Hybrid-Ansatz:** Beste Clips aus Veo3 + manuelle Touch-ups
-- **Alternative:** RunwayML Act-Two für kritische Szenen
-- **Budget-Option:** Statische Frames + einfache Animation
+- **Vorteil Zeichentrick:** Weniger "Uncanny Valley" als Photorealismus
+- **Backup:** Statische Zeichentrick-Frames + After Effects Animation
+- **Alternative:** Lottie-Files für Web-optimierte Vektoranimationen
 
 ---
 
