@@ -649,21 +649,6 @@
             .metric { font-size: clamp(1.6rem, 6vw, 2.2rem); }
         }
 
-        /* Footer Responsive */
-        @media (max-width: 768px) {
-            footer {
-                padding: 30px 15px !important;
-            }
-            
-            footer .container > div:first-child {
-                grid-template-columns: 1fr !important;
-                gap: 25px !important;
-            }
-            
-            footer [style*="column-count"] {
-                column-count: 1 !important;
-            }
-        }
 
         /* Results section title: clean, no underline */
         .results-section .section-header h2 {
@@ -1343,72 +1328,12 @@
     </div>
 
     <!-- Mini Footer -->
-    <footer style="background: #1a1a2e; padding: 40px 20px; color: #a8b2c1;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 30px;">
-                <div>
-                    <h4 style="color: #40e0d0; margin-bottom: 16px;">Impressum</h4>
-                    <div style="line-height: 1.6; font-size: 0.9rem;">
-                        <strong>Angaben gemäß § 5 TMG:</strong><br><br>
-                        <strong>Betreiber der Website</strong><br>
-                        Valoa Studio<br>
-                        Moosdorfstraße 5, 12435 Berlin<br>
-                        Deutschland<br><br>
-                        <strong>Vertreten durch</strong><br>
-                        Fabian Kuypers<br><br>
-                        <strong>Kontakt</strong><br>
-                        Telefon: +4915150567402<br>
-                        E-Mail: contact@valoa.studio
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 style="color: #40e0d0; margin-bottom: 16px;">Haftungsausschluss</h4>
-                    <div style="line-height: 1.6; font-size: 0.9rem;">
-                        <strong>Haftung für Inhalte</strong><br>
-                        Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.<br><br>
-                        <strong>Haftung für Links</strong><br>
-                        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.<br><br>
-                        <strong>Urheberrecht</strong><br>
-                        Die durch die Seitenbetreiber erstellten Inhalte unterliegen dem deutschen Urheberrecht.
-                    </div>
-                </div>
-            </div>
-            
-            <div style="border-top: 1px solid rgba(64, 224, 208, 0.2); padding-top: 30px;">
-                <h4 style="color: #40e0d0; margin-bottom: 16px;">Datenschutzerklärung</h4>
-                <div style="line-height: 1.6; font-size: 0.9rem; column-count: 2; column-gap: 40px;">
-                    <strong>1. Verantwortlicher</strong><br>
-                    Valoa Studio<br>
-                    Moosdorfstraße 5, 12435 Berlin<br>
-                    contact@valoa.studio<br><br>
-                    
-                    <strong>2. Erhebung personenbezogener Daten</strong><br>
-                    Beim Besuch unserer Website werden keine personenbezogenen Daten erfasst, es sei denn, Sie stellen uns diese freiwillig zur Verfügung.<br><br>
-                    
-                    <strong>3. Datenverarbeitung bei Kontaktaufnahme</strong><br>
-                    Wenn Sie uns per E-Mail kontaktieren, speichern wir die von Ihnen angegebenen Daten zur Bearbeitung Ihrer Anfrage. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.<br><br>
-                    
-                    <strong>4. Externe Dienste</strong><br>
-                    <strong>GoHighLevel Kalender:</strong> Unsere CTA-Buttons verlinken auf einen externen Kalender von GoHighLevel. Beim Klick werden Sie zu deren Website weitergeleitet. Es gelten die Datenschutzbestimmungen von GoHighLevel.<br><br>
-                    
-                    <strong>Google Analytics:</strong> Diese Website verwendet Google Analytics zur Analyse der Website-Nutzung. Google Analytics verwendet Cookies und ähnliche Technologien. Die Datenverarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).<br><br>
-                    
-                    <strong>Website-Hosting:</strong> Unsere Website wird extern gehostet. Die Daten werden auf den Servern des Hosting-Anbieters gespeichert.<br><br>
-                    
-                    <strong>5. Ihre Rechte</strong><br>
-                    Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO) und Widerspruch (Art. 21 DSGVO).<br><br>
-                    
-                    <strong>6. Kontakt</strong><br>
-                    Bei Fragen wenden Sie sich an: contact@valoa.studio<br><br>
-                    
-                    <strong>7. Änderungen</strong><br>
-                    Wir behalten uns vor, diese Datenschutzerklärung gelegentlich anzupassen.
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(64, 224, 208, 0.1); color: #666;">
-                <p>© 2025 Valoa Studio. Alle Rechte vorbehalten.</p>
+    <footer style="background: #1a1a2e; padding: 20px; color: #a8b2c1; text-align: center; font-size: 0.9rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 12px;">© 2025 Valoa Studio. Alle Rechte vorbehalten.</p>
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+                <a href="impressum.html" style="color: #a8b2c1; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#40e0d0'" onmouseout="this.style.color='#a8b2c1'">Impressum</a>
+                <a href="datenschutz.html" style="color: #a8b2c1; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#40e0d0'" onmouseout="this.style.color='#a8b2c1'">Datenschutz</a>
             </div>
         </div>
     </footer>
