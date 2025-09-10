@@ -77,19 +77,19 @@ MASTER PROMPT (für Midjourney):
 
 ### **CLIP-SPEZIFISCHE PROMPTS (9:16 + LINKEDIN-OPTIMIERT):**
 
-**Clip 1: LinkedIn-Hook mit ChatGPT-Bezug**
+**Clip 1: Frustrierter Makler am Schreibtisch**
 ```
-"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design, sitting at desk looking curious about ChatGPT on computer screen, 2D explainer video style, mobile-friendly vertical composition, 8 seconds, 1080x1920"
-```
-
-**Clip 2: Schockierend niedrige Abschlussquote**
-```
-"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design, looking shocked at computer showing '12% success rate', exaggerated cartoon expression, same office setting, 2D animation style, large text visible on mobile, 8 seconds"
+"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design, sitting frustrated at modern office desk with ringing phone, stress visible on cartoon face, 2D explainer video style, mobile-friendly vertical composition, 8 seconds, 1080x1920"
 ```
 
-**Clip 3: ChatGPT Interface zeigt niedrige Quote**
+**Clip 2: Marc bei endlosen Telefonaten**
 ```
-"2D cartoon style ChatGPT interface showing '12% success rate' with cartoon Marc looking disappointed, simple vector graphics, mobile-readable text, explainer video style, consistent character design as previous clips, vertical 9:16 composition, 6 seconds"
+"2D cartoon Marc, friendly real estate agent, simple vector style like Dropbox animations, 35-40 years old, short dark hair, big expressive eyes, white business shirt, clean cartoon design, talking on phone while taking notes, looking increasingly tired, same office setting as previous clip, 2D animation style, cartoon exhaustion visible, 8 seconds"
+```
+
+**Clip 3: Schock-Statistik "95% Ausschuss"**
+```
+"2D cartoon Marc looking shocked at big '95%' number floating in front of him, same character design as previous clips, exaggerated cartoon surprise expression, simple vector graphics, mobile-readable large text, explainer video style, vertical 9:16 composition, clean background, 8 seconds"
 ```
 
 ### **KONSISTENZ-REGELN FÜR ALLE CLIPS (MOBILE + ZEICHENTRICK):**
@@ -98,7 +98,7 @@ MASTER PROMPT (für Midjourney):
 2. **Immer "2D cartoon" und "vector style" erwähnen**
 3. **Konsistente "big expressive eyes" für mobile Lesbarkeit**
 4. **9:16 Format IMMER: "vertical composition, 1080x1920"**
-5. **LinkedIn-Context beibehalten wo relevant**
+5. **Landing Page Message beibehalten** (95% Ausschuss, 3-Stufen-Filter, etc.)
 6. **Bei Problemen: Zeichentrick-Referenzbild aus Phase 1 hochladen**
 
 ---
@@ -244,11 +244,11 @@ Track 3: Sound Effects (optional, Freesound.org)
 - **Erste 3 Sekunden:** Hook muss auf 5-Zoll-Screen funktionieren
 - **Vertikaler Fokus:** Wichtige Elemente in oberen 2/3 des Frames
 
-### **LinkedIn-Spezifische Anpassungen:**
-- **Referenz auf "ChatGPT-Tipps" in ersten 5 Sekunden**
-- **CTA zeigt nach unten** (zu Kommentaren/Link)
-- **Professioneller Ton** (LinkedIn-Audience)
-- **Zahlen groß und prominent** (mobile Sichtbarkeit)
+### **Hero-Section-Spezifische Anpassungen:**
+- **"8 Stunden mit Besichtigungstouristen" in ersten 5 Sekunden**
+- **"95% Ausschuss" als Schock-Element**
+- **"3-Stufen-Filtersystem" als zentrale Lösung**
+- **CTA exakt wie auf Landing Page: "Ja, ich will nur noch echte Käufer"**
 
 ---
 
