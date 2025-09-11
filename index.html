@@ -794,6 +794,15 @@
             }
         }
 
+        /* Hide mobile elements on desktop */
+        .hero-subtitle-mobile {
+            display: none;
+        }
+        
+        .hero-video-mobile {
+            display: none;
+        }
+
         /* Responsive */
         @media (max-width: 968px) {
             .hero-content {
@@ -835,26 +844,43 @@
                 line-height: 1.3;
                 letter-spacing: -0.005em;
             }
-            /* Hide long supporting paragraph in header on mobile */
-            .hero-header .subtitle:not(.lead-subtitle) { display: none; }
 
-            /* Show video on mobile after title */
-            .hero-right {
-                display: block !important;
-                order: 1;
-                margin: 4px 0;
+            /* Show mobile video and rearrange elements on mobile */
+            .hero-video-mobile {
+                display: block;
+                margin: 16px 0 8px 0; /* Weniger Abstand nach dem Video */
             }
-            .hero-content {
-                display: flex;
-                flex-direction: column;
-                gap: 0;
-            }
-            .hero-header {
-                order: 0;
+            
+            .hero-video-mobile .video-container {
+                height: 220px;
                 margin-bottom: 0;
             }
-            .hero-left {
-                order: 2;
+            
+            /* Kleinere Schrift für subtitle auf mobil */
+            .hero-header .subtitle {
+                font-size: 1.1rem; /* 3 Schriftgrößen kleiner */
+                margin-bottom: 16px;
+            }
+            
+            /* Mobile Hero Section Feinschliff */
+            .hero { 
+                padding-top: 12px; 
+                min-height: auto;
+            }
+            .hero-header { 
+                gap: 4px; 
+                margin-bottom: 12px; 
+                text-align: center;
+            }
+            .hero-title { 
+                font-size: clamp(1.3rem, 5.2vw, 1.7rem);
+                line-height: 1.2;
+                margin-bottom: 0;
+            }
+            .lead-subtitle { 
+                color: #b8c5d1; 
+                font-size: 1.1rem; 
+                margin-bottom: 8px;
             }
             
             /* Mobile video styling */
@@ -986,6 +1012,25 @@
                     <span class="warning-text">"Die Finanzierung wurde leider doch abgelehnt..."</span>
                 </p>
                 <h1 class="hero-title">Qualifizierte Immobilienkäufer gewinnen – Leadgenerierung ohne Zeitverschwendung für Immobilienmakler</h1>
+                
+                <!-- Video nur für mobile Ansicht -->
+                <div class="hero-video-mobile">
+                    <div class="video-container">
+                        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                            <source src="zeitfresser.mp4" type="video/mp4">
+                            <div class="video-placeholder">
+                                <div class="play-button"></div>
+                                <h3 style="color: white; margin-bottom: 12px;">2-Minuten-Video</h3>
+                                <p>[Platzhalter: Erklärvideo wie das System funktioniert]</p>
+                                <p style="font-size: 0.9rem; margin-top: 20px;">
+                                    "So filtern wir 95% der Zeitverschwender aus, 
+                                    bevor sie Ihren Kalender blockieren"
+                                </p>
+                            </div>
+                        </video>
+                    </div>
+                </div>
+                
                 <p class="subtitle">
                     Während Sie diesen Text lesen, verschwenden Ihre Mitbewerber wieder 
                     <span class="warning-text">8 Stunden mit Besichtigungstouristen.</span> Sie könnten stattdessen 
@@ -1011,10 +1056,10 @@
                     </div>
 
                     <div class="cta-wrapper">
-                        <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de" class="cta-button">
+                        <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min" class="cta-button">
                             Ja, ich will nur noch echte Käufer →
                         </a>
-                        <p class="cta-subtext">🔥 In 15 Minuten wissen Sie, wie viel Zeit Sie sparen werden</p>
+                        <p class="cta-subtext">🔥 In 15 Minuten zeige ich Ihnen, wie viel Zeit Sie sparen werden</p>
                     </div>
 
                     <div class="guarantee">
@@ -1090,7 +1135,7 @@
 
                 <div style="text-align: center; margin: 48px 0;">
                     <p style="font-size: 1.3rem; color: #1a1a2e; font-weight: 600;">
-                        c
+                        "Die Finanzierung wurde leider doch abgelehnt..."
                     </p>
                     <p style="color: #4a5568; margin-top: 12px;">
                         Wenn Sie diesen Satz nie wieder hören wollen, sind Sie hier richtig.
@@ -1241,7 +1286,7 @@
                         <p><strong>Bereit für diese 30‑Tage‑Ergebnisse?</strong></p>
                         <small>Unverbindliche Kurzberatung – klarer Fahrplan in 15 Minuten.</small>
                     </div>
-                    <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de" class="cta-button">Ja, ich will diese Ergebnisse →</a>
+                    <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min" class="cta-button">Ja, ich will diese Ergebnisse →</a>
                 </div>
             </div>
         </div>
@@ -1288,7 +1333,7 @@
                         • Einkommensprüfung (40%-Regel der Banken)<br><br>
                         
                         <strong>3. KI-Empfehlungsoptimierung:</strong><br>
-                        Wenn vermögende Käufer ChatGPT fragen "Bester Immobilienmakler München / Berlin / Hamburg", werden SIE empfohlen.<br><br>
+                        Wenn vermögende Käufer ChatGPT fragen "Bester Immobilienmakler in [Stadt]", werden SIE empfohlen.<br><br>
                         
                         <strong>Ergebnis:</strong> 100% Ihrer Termine haben Finanzierungsbestätigung - "Die Finanzierung wurde abgelehnt" hören Sie nie wieder.
                     </div>
@@ -1448,7 +1493,7 @@
                 In 15 Minuten zeige ich Ihnen, wie Sie das ändern.
             </p>
             
-            <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de" class="cta-button">
+            <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min" class="cta-button">
                 Jetzt Strategiegespräch sichern (nur noch 3 Plätze) →
             </a>
             
@@ -1495,7 +1540,7 @@
     </style>
     
     <div class="mobile-sticky-cta" style="display: none;">
-        <a href="https://api.leadconnectorhq.com/widget/bookings/valoa-studio-de">
+        <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min">
             Jetzt Termin sichern →
         </a>
     </div>
