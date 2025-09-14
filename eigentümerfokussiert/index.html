@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das Makler-Betriebssystem | Qualifizierte Käufer als Waffe für mehr Alleinaufträge</title>
+    <meta name="description" content="Stoppen Sie die Zeitverschwendung. Installieren Sie das einzige Akquise-System für Makler, das geprüfte Käufer als Hebel nutzt, um die besten Verkaufs-Mandate in Ihrer Region zu dominieren.">
+    <meta name="keywords" content="qualifizierte immobilienkäufer, makler akquise system, alleinaufträge gewinnen, immobilienmakler leadgenerierung, makler automatisierung, makler crm automatisierung, fabian kuypers">
+    <meta name="author" content="Fabian Kuypers">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://fabian-kuypers.de/">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Self-hosted Inter (variable) */
+        @font-face {
+            font-family: 'Inter';
+            src: url('./fonts/Inter.var.woff2') format('woff2-variations'),
+                 url('./fonts/Inter.var.woff2') format('woff2');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: url('./fonts/Inter-italic.var.woff2') format('woff2-variations'),
+                 url('./fonts/Inter-italic.var.woff2') format('woff2');
+            font-weight: 100 900;
+            font-style: italic;
+            font-display: swap;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            background-color: #020617; /* Slate 950 */
+            color: #E2E8F0; /* Slate 200 */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #7c3aed); /* Blue 600 to Violet 600 */
+            background-clip: text; /* standard */
+            -webkit-background-clip: text; /* safari/chrome */
+            color: transparent; /* standard */
+            -webkit-text-fill-color: transparent; /* safari */
+        }
+        .warning-text {
+            background: linear-gradient(to right, #e11d48, #f43f5e); /* Rose 600 to 500 */
+            background-clip: text; /* standard */
+            -webkit-background-clip: text; /* safari/chrome */
+            color: transparent; /* standard */
+            -webkit-text-fill-color: transparent; /* safari */
+        }
+        .cta-button {
+            background: linear-gradient(to right, #2563eb, #5b21b6);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.5);
+        }
+        .feature-card {
+            background-color: rgba(15, 23, 42, 0.6); /* Slate 900 mit Transparenz */
+            border: 1px solid #1e293b; /* Slate 800 */
+            border-radius: 0.75rem;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        /* Premium micro-animations for network SVG */
+        @media (prefers-reduced-motion: no-preference) {
+            .network-graph .link {
+                stroke-dasharray: 2,2;
+                animation: dash 2.4s linear infinite;
+            }
+            .network-graph .link.delay-1 { animation-delay: .2s; }
+            .network-graph .link.delay-2 { animation-delay: .4s; }
+            .network-graph .link.delay-3 { animation-delay: .6s; }
+            .network-graph .link.delay-4 { animation-delay: .8s; }
+            .network-graph .node-center {
+                transform-box: fill-box;
+                transform-origin: center;
+                animation: pulse 4s ease-in-out infinite;
+                filter: url(#glow);
+            }
+            .network-graph .node {
+                transform-box: fill-box;
+                transform-origin: center;
+                animation: bob 6s ease-in-out infinite;
+            }
+            .network-graph .node.n1 { animation-delay: .1s; }
+            .network-graph .node.n2 { animation-delay: .3s; }
+            .network-graph .node.n3 { animation-delay: .5s; }
+            .network-graph .node.n4 { animation-delay: .7s; }
+        }
+        @keyframes dash { to { stroke-dashoffset: -10; } }
+        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+    </style>
+
+    <!-- SEO: Detailliertes JSON-LD Schema für Service & Software Application -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Das Akquise-Betriebssystem für Immobilienmakler",
+      "description": "Ein spezialisierter Service, der Immobilienmaklern durch ein datengetriebenes System zur Käufer-Qualifizierung hilft, mehr exklusive Alleinaufträge zu gewinnen und ihre Marktposition zu dominieren.",
+      "serviceType": "Immobilienmakler Marketing & Lead-Qualifizierung",
+      "provider": {
+        "@type": "Organization",
+        "name": "Fabian Kuypers Consulting",
+        "url": "https://fabian-kuypers.de",
+        "logo": "https://fabian-kuypers.de/fabian-kuypers-logo.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Fabian Kuypers"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "DACH"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Service-Pakete",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Makler-Betriebssystem Lizenz",
+            "priceCurrency": "EUR",
+            "description": "Monatliche Lizenz für das komplette Akquise-Betriebssystem, inklusive datengetriebener Landing Page, GoHighLevel Backend und laufender SEO/SEA/CRO-Optimierung.",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "name": "Käufer-Qualifizierungs-Tool",
+              "description": "Eine hoch-performante Web-Anwendung, die potenzielle Immobilienkäufer anhand von Finanzierungsstatus, Eigenkapital und Kaufabsicht vorqualifiziert und die Daten via Webhook an ein CRM-System sendet.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Zentrales Automatisierungs-Backend (via Webhook Integration)",
+              "featureList": [
+                "Intelligente Filterung von Web-Traffic (SEO/SEA)",
+                "Automatischer Qualifizierungs-Fragebogen",
+                "Echtzeit-Leadübergabe in Ihr Akquise-Cockpit",
+                "Permanente A/B-Test-Optimierung"
+              ]
+            }
+          }
+        ]
+      },
+      "mainEntity": {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Ist das nur eine weitere Landing Page oder eine Lead-Agentur?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nein. Wir installieren ein komplettes Betriebssystem für Ihre Akquise. Die Landing Page ist nur die sichtbare Schnittstelle. Im Hintergrund arbeitet ein datengestütztes System, das auf den Ergebnissen aller unserer Partner lernt, kombiniert mit einem für Sie eingerichteten Automatisierungs-Backend zur Prozessautomatisierung. Sie kaufen keinen Fisch, Sie bekommen eine permanent selbst-optimierende Hochsee-Fangflotte."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie genau helfen mir qualifizierte Käufer dabei, mehr Verkäufer-Mandate zu gewinnen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Das ist der strategische Kern. Sie gehen nicht mehr zu einem Eigentümer und 'hoffen' auf den Auftrag. Sie präsentieren ihm eine aktive, geprüfte Liste finanzierungsstarker Kaufinteressenten aus Ihrem System. Das ist der ultimative Beweis für Ihre Kompetenz und der entscheidende Hebel, um den exklusiven Alleinauftrag zu erhalten, während Ihre Konkurrenz nur leere Versprechungen macht."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was bedeutet 'kollektive Daten-Intelligenz'?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Jede Anzeige, jeder Klick und jede Konversion bei allen unseren Partnern im DACH-Raum fließt anonymisiert in unsere zentrale Datenbasis ein. Wir führen permanent A/B-Tests durch. Wenn wir in Hamburg eine Überschrift finden, die 10% besser konvertiert, wird dieses Wissen sofort auf Ihr System in München angewandt. Sie profitieren vom Marketingbudget und den Learnings des gesamten Netzwerks – ein uneinholbarer Vorteil."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was kostet dieses System?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die entscheidende Frage ist: Was kostet es Sie, jeden Monat auf 1-2 lukrative Alleinaufträge zu verzichten, weil Ihr Akquise-Prozess nicht überlegen ist? Unser System ist eine Investition in Ihre Marktdominanz mit einem ROI, der typische Marketingausgaben bei weitem übersteigt. Die genauen Konditionen klären wir in einem strategischen Gespräch, nachdem wir Ihr Potenzial analysiert haben."
+            }
+          }
+        ]
+      }
+    }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="py-4 px-6 md:px-12 backdrop-blur-md bg-slate-950/60 sticky top-0 z-50 border-b border-slate-800">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-white tracking-widest">SYSTEM-MAKLR</h1>
+            <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min" class="cta-button text-white font-semibold py-2 px-6 rounded-lg shadow-lg text-sm md:text-base">
+                Strategie-Gespräch anfordern
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20 md:py-32 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+        <div class="container mx-auto relative z-10">
+            <p class="font-semibold text-sky-400">SCHLUSS MIT ZEITVERSCHWENDUNG</p>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tighter mt-4">
+                Verwandeln Sie <span class="warning-text">qualifizierte Käufer</span> in Ihre Waffe für <span class="gradient-text">mehr Alleinaufträge</span>
+            </h1>
+            <p class="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-slate-300">
+                Wir installieren das datengestützte Betriebssystem, das 95% der Besichtigungstouristen eliminiert und Ihnen das entscheidende Argument liefert, um die lukrativsten Verkaufs-Mandate in Ihrem Markt zu dominieren.
+            </p>
+            <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min" class="cta-button mt-10 inline-block text-white font-bold text-lg py-4 px-10 rounded-lg shadow-2xl">
+                Jetzt System-Demo anfordern
+            </a>
+            <p class="mt-4 text-sm text-slate-400">
+                Limitiert auf einen Makler pro Region.
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem & Agitation Section -->
+    <section id="problem" class="py-20 bg-slate-900/70 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Der Markt hat sich geändert. Ihre Strategie auch?</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-slate-300 text-lg">
+                Während Sie noch geplatzten Finanzierungen und unrealistischen Preisvorstellungen hinterherlaufen, hat Ihre Konkurrenz bereits das nächste Exklusivmandat unterschrieben.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+                <!-- Pain Points -->
+                <div class="bg-slate-950 p-6 rounded-lg border border-rose-500/30">
+                    <p class="text-2xl mb-3">📉</p>
+                    <h3 class="font-semibold text-white text-lg">Geplatzte Deals</h3>
+                    <p class="text-slate-400 mt-2">Wochenlange Arbeit umsonst, weil die Bank des Käufers am Ende "Nein" sagt.</p>
+                </div>
+                <div class="bg-slate-950 p-6 rounded-lg border border-rose-500/30">
+                    <p class="text-2xl mb-3">😫</p>
+                    <h3 class="font-semibold text-white text-lg">Machtlose Verhandlungen</h3>
+                    <p class="text-slate-400 mt-2">Sie haben keine Argumente gegen Eigentümer, die noch von den Preisen von 2021 träumen.</p>
+                </div>
+                <div class="bg-slate-950 p-6 rounded-lg border border-rose-500/30">
+                    <p class="text-2xl mb-3">⚔️</p>
+                    <h3 class="font-semibold text-white text-lg">Verlorene Mandate</h3>
+                    <p class="text-slate-400 mt-2">Sie verlieren gegen Konkurrenten, die einen technologisch überlegenen Prozess präsentieren können.</p>
+                </div>
+                <div class="bg-slate-950 p-6 rounded-lg border border-rose-500/30">
+                    <p class="text-2xl mb-3">⏳</p>
+                    <h3 class="font-semibold text-white text-lg">Verbrannte Zeit</h3>
+                    <p class="text-slate-400 mt-2">Ihr Kalender ist voll mit Terminen, aber Ihr Konto nicht. Sie tauschen Zeit gegen Frustration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- The Reveal / Pivot Section -->
+    <section class="py-20 px-6 text-center">
+         <div class="container mx-auto max-w-4xl">
+             <h2 class="text-3xl md:text-5xl font-extrabold">
+                <span class="text-white">Das Problem ist nicht der Markt.</span>
+                <br>
+                <span class="gradient-text">Es ist Ihr Akquise-Modell.</span>
+            </h2>
+            <p class="mt-6 text-lg text-slate-300">
+                Was, wenn Sie das größte Ärgernis – die Käufer-Qualifizierung – in Ihre schärfste Waffe verwandeln, um Verkäufer zu überzeugen? Sie verkaufen nicht mehr nur eine Dienstleistung. Sie präsentieren eine Garantie für einen sauberen, schnellen und sicheren Verkaufsprozess. **Das ist der Hebel, der Ihnen die Alleinaufträge sichert.**
+            </p>
+         </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="loesung" class="py-20 bg-slate-900/70 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Das 3-Stufen-Betriebssystem für Marktführer</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-slate-300">Wir installieren die Infrastruktur, die Sie vom reaktiven Makler zum proaktiven Markt-Dominator macht.</p>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <!-- System Steps -->
+                <div class="feature-card p-8">
+                    <span class="text-3xl font-black gradient-text">1</span>
+                    <h3 class="text-2xl font-bold text-white mt-4">Die Daten-Firewall</h3>
+                    <p class="mt-2 text-slate-300">Unsere permanent optimierten SEO- & SEA-Kampagnen agieren als erste Verteidigungslinie. Sie ziehen nur Traffic von Personen an, die eine ernsthafte Kaufabsicht und die nötige Bonität haben. Besichtigungstouristen sehen Ihre Angebote nicht einmal.</p>
+                </div>
+                <div class="feature-card p-8">
+                    <span class="text-3xl font-black gradient-text">2</span>
+                    <h3 class="text-2xl font-bold text-white mt-4">Der automatische Qualifikator</h3>
+                    <p class="mt-2 text-slate-300">Ihre neue, hoch-performante Qualifizierungs-Seite arbeitet 24/7. Ein intelligenter Prozess filtert nach Eigenkapital, Finanzierungsstatus und Zeitplan. Nur die Top 5% der Interessenten landen als A-Leads in Ihrem Akquise-Cockpit.</p>
+                </div>
+                <div class="feature-card p-8">
+                    <span class="text-3xl font-black gradient-text">3</span>
+                    <h3 class="text-2xl font-bold text-white mt-4">Die Akquise-Waffe</h3>
+                    <p class="mt-2 text-slate-300">Sie gehen in jedes Verkäufergespräch mit dem ultimativen Argument: Einer aktiven, geprüften Liste finanzierungsstarker Käufer. Das ist der unwiderlegbare Beweis für Ihre Überlegenheit und der Grund, warum Eigentümer Ihnen den Alleinauftrag geben.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Unfair Advantage Section -->
+     <section class="py-20 px-6">
+        <div class="container mx-auto max-w-5xl grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                 <h2 class="text-3xl md:text-4xl font-bold text-white">Ihr uneinholbarer Vorteil:
+                    <br><span class="gradient-text">Kollektive Daten-Intelligenz</span></h2>
+                <p class="mt-6 text-lg text-slate-300">
+                    Unser System ist kein statisches Tool. Es ist ein lernendes Netzwerk. Jeder Klick, jede Conversion und jeder A/B-Test bei allen unseren Partnern im DACH-Raum fließt anonymisiert in die Optimierung Ihres Systems ein. 
+                </p>
+                 <p class="mt-4 text-lg text-slate-300 font-semibold">
+                    Während Ihre Konkurrenz teures Lehrgeld zahlt, profitieren Sie vom Wissen des gesamten Netzwerks. Das ist ein Vorsprung, der mit jedem Tag wächst.
+                </p>
+            </div>
+            <div class="p-8 feature-card">
+                 <!-- Visual representation of network effect -->
+                <svg class="w-full h-auto network-graph" viewBox="0 0 200 100" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle class="node-center" cx="100" cy="50" r="10" fill="url(#grad1)"></circle>
+                    <circle class="node n1" cx="50" cy="50" r="5" fill="#38bdf8"></circle>
+                    <circle class="node n2" cx="150" cy="50" r="5" fill="#38bdf8"></circle>
+                    <circle class="node n3" cx="100" cy="20" r="5" fill="#38bdf8"></circle>
+                    <circle class="node n4" cx="100" cy="80" r="5" fill="#38bdf8"></circle>
+                    <path class="link delay-1" d="M 55 50 C 70 40, 85 40, 100 50" stroke="#3b82f6" stroke-width="1" fill="none" />
+                    <path class="link delay-2" d="M 145 50 C 130 60, 115 60, 100 50" stroke="#3b82f6" stroke-width="1" fill="none" />
+                    <path class="link delay-3" d="M 100 25 C 90 35, 90 45, 100 50" stroke="#3b82f6" stroke-width="1" fill="none" />
+                    <path class="link delay-4" d="M 100 75 C 110 65, 110 55, 100 50" stroke="#3b82f6" stroke-width="1" fill="none" />
+                </svg>
+                 <p class="text-center text-slate-400 mt-2 text-sm">Ihr System lernt von allen Knotenpunkten im Netzwerk.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Mehrumsatz-Potenzial (kompakt) -->
+    <section id="roi" class="py-16 md:py-20 px-6">
+        <div class="container mx-auto max-w-4xl bg-slate-900/70 rounded-2xl p-8 md:p-10 border border-slate-800">
+            <h2 class="text-2xl md:text-3xl font-bold text-white text-center">Mehrumsatz‑Potenzial in 30 Sekunden</h2>
+            <p class="mt-3 text-center text-slate-300">Geben Sie Ø‑Courtage und realistische Zusatz‑Abschlüsse an. Sie sehen sofort, welcher zusätzliche Umsatz bei konservativen Annahmen möglich wäre.</p>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <label class="block">
+                    <span class="block text-sm text-slate-300">Ø Courtage pro Verkauf (EUR)</span>
+                    <input id="roi-courtage" type="number" inputmode="numeric" pattern="[0-9]*" min="1000" step="1" value="15000" placeholder="15000" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-3 text-slate-100" />
+                </label>
+                <label class="block">
+                    <span class="block text-sm text-slate-300">Zusätzliche Abschlüsse / Monat</span>
+                    <input id="roi-extra" type="number" inputmode="numeric" pattern="[0-9]*" min="0" max="5" step="1" value="1" placeholder="1" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-3 text-slate-100" />
+                </label>
+                <div id="roi-out" class="rounded-lg bg-slate-950 border border-slate-800 px-4 py-3 flex items-center text-slate-200">
+                    <!-- Ergebnis wird live berechnet -->
+                </div>
+            </div>
+            <p class="mt-3 text-xs text-slate-500 text-center">Keine Speicherung – reine Orientierung als Denkanstoß. Exakte Kalkulation im Gespräch.</p>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="strategie" class="py-20 md:py-32 px-6">
+        <div class="container mx-auto text-center bg-slate-900/70 rounded-2xl p-10 md:p-20 border border-slate-800">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white">
+                Sind Sie bereit, nach neuen Regeln zu spielen?
+            </h2>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-300">
+                In einem Markt, in dem jeder um die gleichen Aufträge kämpft, gewinnt nicht der, der am härtesten arbeitet, sondern der mit dem überlegenen System. Hören Sie auf, Leads zu jagen. Installieren Sie das Betriebssystem, das die besten Mandate für Sie anzieht.
+            </p>
+            <a href="https://api.leadconnectorhq.com/widget/bookings/fabian-kuypers-15-min" class="cta-button mt-10 inline-block text-white font-bold text-lg py-4 px-10 rounded-lg shadow-2xl">
+                Ja, ich will eine Demo des Betriebssystems
+            </a>
+            <p class="mt-4 text-sm text-slate-400">
+                15 Minuten. Kein Verkaufsgespräch. Reine Strategie.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800 px-6">
+        <div class="container mx-auto text-center text-slate-400">
+            <p>&copy; 2025 Fabian Kuypers. Alle Rechte vorbehalten.</p>
+            <div class="mt-4 space-x-6">
+                <a href="impressum.html" class="hover:text-white">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-white">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script>
+    // Minimaler ROI-Rechner (live, ohne externe Requests)
+    (function(){
+        const cEl = document.getElementById('roi-courtage');
+        const xEl = document.getElementById('roi-extra');
+        const out = document.getElementById('roi-out');
+        if(!cEl || !xEl || !out) return;
+        function digits(v){ return String(v||'').replace(/\D+/g,''); }
+        function render(){
+            // sanitize to ganze Zahlen; entferne Punkte/Kommas etc.
+            const cSan = digits(cEl.value);
+            const xSan = digits(xEl.value);
+            if(cEl.value !== cSan) cEl.value = cSan;
+            if(xEl.value !== xSan) xEl.value = xSan;
+            let c = parseInt(cSan || '0', 10);
+            let x = parseInt(xSan || '0', 10);
+            if(!Number.isFinite(c)) c = 0;
+            if(!Number.isFinite(x)) x = 0;
+            c = Math.max(1000, c);
+            x = Math.min(5, Math.max(0, x));
+            const m = c * x;
+            const y = m * 12;
+            out.innerHTML = `
+                <div>
+                    <p>Monatlicher Mehrumsatz: <strong>€${m.toLocaleString('de-DE')}</strong></p>
+                    <p class="text-slate-400 text-sm">Jährlich: <strong>€${y.toLocaleString('de-DE')}</strong></p>
+                </div>
+            `;
+        }
+        ['input','change','blur'].forEach(evt => {
+            cEl.addEventListener(evt, render);
+            xEl.addEventListener(evt, render);
+        });
+        render();
+    })();
+</script>
+</html>
