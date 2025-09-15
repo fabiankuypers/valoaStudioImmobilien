@@ -22,6 +22,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Qualifizierte Immobilienkäufer finden - Fabian Kuypers">
     <meta name="twitter:description" content="70% weniger Zeitverschwendung durch das 3-Stufen-Filtersystem für qualifizierte Immobilienkäufer mit Eigenkapital.">
+    
+    <!-- Video.js (für robustes Mobile- & Fullscreen-Handling) -->
+    <link rel="stylesheet" href="https://vjs.zencdn.net/8.16.1/video-js.css">
+    <script defer src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
     [
@@ -1360,11 +1364,8 @@
                 
                 <!-- Video nur für mobile Ansicht -->
                 <div class="hero-video-mobile">
-                    <div class="video-container" data-video-src="export 3 - zeitszene verbessert.mp4">
-                        <video class="video-thumb" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                            <source src="zeitfresser.mp4" type="video/mp4">
-                        </video>
-                        <button class="play-button" aria-label="Video abspielen"></button>
+                    <div class="video-container">
+                        <video id="vjs-mobile" class="video-js vjs-big-play-centered" playsinline controls preload="none" data-src="export 3 - zeitszene verbessert.mp4" style="width: 100%; height: 100%; border-radius: 12px;"></video>
                     </div>
                 </div>
                 
@@ -1415,11 +1416,8 @@
                 </div>
 
                 <div class="hero-right">
-                    <div class="video-container" data-video-src="export 3 - zeitszene verbessert.mp4">
-                        <video class="video-thumb" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                            <source src="zeitfresser.mp4" type="video/mp4">
-                        </video>
-                        <button class="play-button" aria-label="Video abspielen"></button>
+                    <div class="video-container">
+                        <video id="vjs-desktop" class="video-js vjs-big-play-centered" playsinline controls preload="none" data-src="export 3 - zeitszene verbessert.mp4" style="width: 100%; height: 100%; border-radius: 12px;"></video>
                     </div>
                 </div>
             </div>
@@ -2002,54 +2000,61 @@
             window.addEventListener('resize', updateActive);
             updateActive();
         })();
+        
+        // Video.js: lazy Source + Autoplay on first click; download-Funktion unterbinden
+        (function initVideoJS() {
+            function boot() {
+                if (!window.videojs) return;
 
-        // Lazy-load heavy video on Play
-        (function() {
-            function init(container) {
-                const playBtn = container.querySelector('.play-button');
-                const thumb = container.querySelector('video');
-                const src = container.getAttribute('data-video-src');
-                if (!playBtn || !src) return;
+                document.querySelectorAll('video.video-js[data-src]').forEach(function(el){
+                    const src = el.getAttribute('data-src');
+                    // Grundsetup über JS, damit wir die Quelle erst beim Play setzen
+                    const player = window.videojs(el, {
+                        controls: true,
+                        preload: 'none',
+                        bigPlayButton: true,
+                        controlBar: {
+                            volumePanel: { inline: false },
+                            pictureInPictureToggle: false,
+                            remainingTimeDisplay: false,
+                            chaptersButton: false,
+                            playbackRateMenuButton: false,
+                            // Video.js zeigt ohnehin keinen Download-Button an
+                        }
+                    });
 
-                function loadAndPlay() {
-                    playBtn.removeEventListener('click', loadAndPlay);
-                    const video = document.createElement('video');
-                    video.controls = true;
-                    video.setAttribute('controls', '');
-                    video.setAttribute('controlsList', 'nodownload noplaybackrate noremoteplayback');
-                    video.disablePictureInPicture = true;
-                    video.setAttribute('disablePictureInPicture', '');
-                    video.setAttribute('disableRemotePlayback', '');
-                    video.autoplay = true;
-                    video.playsInline = true;
-                    video.setAttribute('playsinline', '');
-                    video.setAttribute('webkit-playsinline', '');
-                    video.preload = 'auto';
-                    video.style.width = '100%';
-                    video.style.height = '100%';
-                    video.style.objectFit = 'cover';
-                    video.style.borderRadius = '12px';
-                    video.src = src;
-                    video.setAttribute('oncontextmenu', 'return false;');
+                    // Kontextmenü (Download) unterbinden
+                    el.addEventListener('contextmenu', e => e.preventDefault());
 
-                    if (thumb) { try { thumb.pause(); } catch(e){} thumb.remove(); }
-                    playBtn.remove();
-                    container.appendChild(video);
+                    let sourceSet = false;
+                    function ensureSourceAndPlay() {
+                        if (!sourceSet) {
+                            player.src({ type: 'video/mp4', src });
+                            sourceSet = true;
+                        }
+                        player.play().catch(()=>{});
+                    }
 
-                    const start = () => video.play().catch(() => {});
-                    if (video.readyState >= 2) start();
-                    else video.addEventListener('canplay', start, { once: true });
-                }
+                    // Beim ersten Play-Klick Quelle setzen und sofort starten
+                    player.on('play', function onFirstPlay(){
+                        player.off('play', onFirstPlay);
+                        ensureSourceAndPlay();
+                    });
 
-                playBtn.addEventListener('click', loadAndPlay);
-                playBtn.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadAndPlay(); }
+                    // Falls Nutzer den Big-Play-Button klickt, aber das Play-Event abgefangen wird
+                    player.on('firstplay', ensureSourceAndPlay);
+
+                    // iOS/Android Vollbild: Video.js kümmert sich darum
                 });
             }
 
-            document.addEventListener('DOMContentLoaded', function() {
-                document.querySelectorAll('.video-container[data-video-src]').forEach(init);
-            });
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                if (window.videojs) boot(); else window.addEventListener('load', boot);
+            } else {
+                document.addEventListener('DOMContentLoaded', function(){
+                    if (window.videojs) boot(); else window.addEventListener('load', boot);
+                });
+            }
         })();
     </script>
 </body>
