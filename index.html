@@ -349,22 +349,94 @@
         /* Video container */
         .video-container {
             width: 100%;
-            height: 400px;
+            height: auto; /* fluid height over Player */
+            aspect-ratio: var(--aspect-ratio, 16 / 9); /* dynamisch per Metadata */
             border-radius: 16px;
             overflow: hidden;
             border: 2px solid rgba(64, 224, 208, 0.3);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative; /* overlay play button */
+            max-width: 100%;
         }
 
         /* Ensure Video.js fills the container */
         .video-container .video-js {
             width: 100% !important;
-            height: 100% !important;
+            height: auto !important; /* allow fluid mode to control height */
             border-radius: 12px;
             overflow: hidden;
+            background-color: #000;
         }
         .video-container .vjs-tech { object-fit: cover; }
+        /* In Fullscreen beziehung wahren und Rundungen abstellen */
+        .video-js.vjs-fullscreen .vjs-tech { object-fit: contain !important; }
+        .video-js.vjs-fullscreen,
+        .video-js.vjs-fullscreen .vjs-tech { border-radius: 0 !important; }
+
+        /* Thumbnail-Video (Preview) über dem Player bis zum Klick) */
+        .video-container .preview-thumb {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            border-radius: 12px;
+        }
+        .video-container .overlay-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            width: 76px;
+            height: 76px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc);
+            border: none;
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.35);
+            cursor: pointer;
+        }
+        .video-container .overlay-play::after {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-40%, -50%);
+            width: 0; height: 0;
+            border-left: 20px solid #0f0f1e;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+        }
+        .video-container .overlay-play:focus { outline: 2px solid #72efdd; outline-offset: 2px; }
+
+        /* Brand-gerechter Big-Play-Button (Video.js) */
+        .video-js .vjs-big-play-button {
+            width: 76px !important;
+            height: 76px !important;
+            border-radius: 9999px !important;
+            background: linear-gradient(135deg, #40e0d0, #48d1cc) !important;
+            border: none !important;
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.35) !important;
+            color: #0f0f1e !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            margin: 0 !important;
+        }
+        /* eigenes Play-Symbol als Dreieck */
+        .video-js .vjs-big-play-button .vjs-icon-placeholder { display: none !important; }
+        .video-js .vjs-big-play-button::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-40%, -50%);
+            width: 0; height: 0;
+            border-left: 20px solid #0f0f1e; /* dunkles Dreieck */
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+        }
+        .video-js:hover .vjs-big-play-button { filter: brightness(0.95); transform: translate(-50%, -50%) scale(1.03) !important; transition: transform .2s ease; }
         
         /* Fallback placeholder for video */
         .video-placeholder {
@@ -1206,12 +1278,14 @@
             /* Show mobile video and rearrange elements on mobile */
             .hero-video-mobile {
                 display: block;
+                width: 100% !important;
                 margin: 16px 0 8px 0; /* Weniger Abstand nach dem Video */
             }
             
             .hero-video-mobile .video-container {
-                height: 220px;
-                width: 100%;
+                display: block;
+                height: auto; /* durch aspect-ratio gesteuert */
+                width: 100% !important;
                 margin-bottom: 0;
             }
             
@@ -1244,8 +1318,9 @@
             
             /* Mobile video styling */
             .video-container {
-                height: 220px;
-                width: 100%;
+                display: block;
+                height: auto; /* durch aspect-ratio gesteuert */
+                width: 100% !important;
                 margin-bottom: 4px;
             }
 
@@ -1376,7 +1451,11 @@
                 <!-- Video nur für mobile Ansicht -->
                 <div class="hero-video-mobile">
                     <div class="video-container">
-                        <video id="vjs-mobile" class="video-js vjs-big-play-centered" playsinline controls preload="none" data-src="export 3 - zeitszene verbessert.mp4" style="width: 100%; height: 100%; border-radius: 12px;"></video>
+                        <video id="vjs-mobile" class="video-js vjs-big-play-centered vjs-fluid vjs-16-9" playsinline controls preload="none" data-src="export 3 - zeitszene verbessert.mp4" style="width: 100%; border-radius: 12px;"></video>
+                        <video class="preview-thumb" autoplay muted loop playsinline preload="metadata">
+                            <source src="zeitfresser.mp4" type="video/mp4">
+                        </video>
+                        <button class="overlay-play" aria-label="Video abspielen"></button>
                     </div>
                 </div>
                 
@@ -1428,7 +1507,11 @@
 
                 <div class="hero-right">
                     <div class="video-container">
-                        <video id="vjs-desktop" class="video-js vjs-big-play-centered" playsinline controls preload="none" data-src="export 3 - zeitszene verbessert.mp4" style="width: 100%; height: 100%; border-radius: 12px;"></video>
+                        <video id="vjs-desktop" class="video-js vjs-big-play-centered vjs-fluid vjs-16-9" playsinline controls preload="none" data-src="export 3 - zeitszene verbessert.mp4" style="width: 100%; border-radius: 12px;"></video>
+                        <video class="preview-thumb" autoplay muted loop playsinline preload="metadata">
+                            <source src="zeitfresser.mp4" type="video/mp4">
+                        </video>
+                        <button class="overlay-play" aria-label="Video abspielen"></button>
                     </div>
                 </div>
             </div>
@@ -2012,27 +2095,52 @@
             updateActive();
         })();
         
-        // Video.js: lazy Source + Autoplay auf ersten Klick; Download verhindern
+        // Video.js: fluid 16:9, lazy Source + Autoplay auf ersten Klick; Download verhindern
         (function initVideoJS() {
             function boot() {
                 if (!window.videojs) return;
 
                 document.querySelectorAll('video.video-js[data-src]').forEach(function(el){
                     const src = el.getAttribute('data-src');
+                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
                     // Grundsetup über JS, Quelle wird erst bei der ersten Interaktion gesetzt
                     const player = window.videojs(el, {
                         controls: true,
                         preload: 'none',
                         bigPlayButton: true,
+                        fluid: true,
+                        playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
                         controlBar: {
                             volumePanel: { inline: false },
                             pictureInPictureToggle: false,
                             remainingTimeDisplay: false,
                             chaptersButton: false,
-                            playbackRateMenuButton: false,
+                            playbackRateMenuButton: true,
+                            fullscreenToggle: !isMobile,
                             // Video.js zeigt ohnehin keinen Download-Button an
                         }
                     });
+
+                    // Verhältnis dynamisch aus Metadaten bestimmen (Fallback 16:9)
+                    const container = el.closest('.video-container');
+                    (function probeAspect(){
+                        try {
+                            const v = document.createElement('video');
+                            v.preload = 'metadata';
+                            v.src = src;
+                            v.addEventListener('loadedmetadata', function onMeta(){
+                                const w = v.videoWidth, h = v.videoHeight;
+                                if (w && h) {
+                                    if (container) container.style.setProperty('--aspect-ratio', `${w} / ${h}`);
+                                    if (player.aspectRatio) player.aspectRatio(`${w}:${h}`);
+                                } else if (player.aspectRatio) {
+                                    player.aspectRatio('16:9');
+                                }
+                                v.removeEventListener('loadedmetadata', onMeta);
+                                v.remove();
+                            }, { once: true });
+                        } catch(e) { if (player.aspectRatio) player.aspectRatio('16:9'); }
+                    })();
 
                     // Kontextmenü (Download) unterbinden
                     el.addEventListener('contextmenu', e => e.preventDefault());
@@ -2043,7 +2151,7 @@
                         if (tech) {
                             tech.setAttribute('playsinline','');
                             tech.setAttribute('webkit-playsinline','');
-                            tech.setAttribute('controlsList','nodownload noplaybackrate noremoteplayback');
+                            tech.setAttribute('controlsList','nodownload noremoteplayback');
                             tech.setAttribute('oncontextmenu','return false;');
                         }
 
@@ -2056,14 +2164,63 @@
                             player.play().catch(()=>{});
                         };
 
-                        // Erste Benutzerinteraktion: Big-Play-Button, Klick/Touch auf Player
+                        // Erste Benutzerinteraktion: Overlay-Button oder Klick/Touch auf Player
+                        // Overlay-UI für Preview entfernen, wenn gestartet wird
+                        const preview = container ? container.querySelector('.preview-thumb') : null;
+                        const overlayBtn = container ? container.querySelector('.overlay-play') : null;
+                        const removePreview = () => {
+                            if (overlayBtn) overlayBtn.remove();
+                            if (preview) { try { preview.pause(); } catch(e){} preview.remove(); }
+                        };
+                        if (overlayBtn) {
+                            const onUserStart = (e) => { e.preventDefault(); removePreview(); ensureSourceAndPlay(); };
+                            overlayBtn.addEventListener('click', onUserStart, { once: true });
+                            overlayBtn.addEventListener('touchend', onUserStart, { once: true, passive: true });
+                        }
                         const big = player.getChild('BigPlayButton');
                         if (big && big.el()) {
-                            big.el().addEventListener('click', (e)=>{ e.stopPropagation(); ensureSourceAndPlay(); }, { once: true });
-                            big.el().addEventListener('touchend', (e)=>{ e.stopPropagation(); ensureSourceAndPlay(); }, { once: true, passive: true });
+                            big.el().addEventListener('click', (e)=>{ e.stopPropagation(); removePreview(); ensureSourceAndPlay(); }, { once: true });
+                            big.el().addEventListener('touchend', (e)=>{ e.stopPropagation(); removePreview(); ensureSourceAndPlay(); }, { once: true, passive: true });
                         }
-                        player.el().addEventListener('click', ensureSourceAndPlay, { once: true });
-                        player.el().addEventListener('touchend', ensureSourceAndPlay, { once: true, passive: true });
+                        player.el().addEventListener('click', ()=>{ removePreview(); ensureSourceAndPlay(); }, { once: true });
+                        player.el().addEventListener('touchend', ()=>{ removePreview(); ensureSourceAndPlay(); }, { once: true, passive: true });
+
+                        // Versuche beim Wechsel in Fullscreen auf Landscape zu sperren (Android/Brave/Chrome); iOS ignoriert dies meist
+                        const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                        let tipEl;
+                        function showTip(msg) {
+                            if (tipEl) return; // einmalig
+                            tipEl = document.createElement('div');
+                            tipEl.textContent = msg;
+                            tipEl.style.cssText = 'position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;padding:8px 12px;border-radius:12px;font-size:14px;z-index:99999;';
+                            document.body.appendChild(tipEl);
+                            setTimeout(()=>{ if (tipEl){ tipEl.remove(); tipEl=null; } }, 2500);
+                        }
+
+                        // Auf Mobilgeräten keine Fullscreen-Logik aktiv
+                        if (!isMobile) player.on('fullscreenchange', async function(){
+                            if (player.isFullscreen()) {
+                                try {
+                                    if (!isiOS && screen.orientation && screen.orientation.lock) {
+                                        await screen.orientation.lock('landscape');
+                                    } else if (isiOS) {
+                                        // iOS zeigt oft Portrait an; Hinweis für Drehung
+                                        showTip('Für Vollbild bitte Gerät quer halten');
+                                    }
+                                } catch (e) {
+                                    // Hinweis anzeigen, wenn Lock fehlschlägt
+                                    showTip('Bitte Gerät quer halten für Vollbild');
+                                }
+                            } else {
+                                try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch(e) {}
+                            }
+                        });
+
+                        // Fullscreen-Schalter auf Mobile vollständig verbergen
+                        if (isMobile && player.controlBar && player.controlBar.getChild) {
+                            const fs = player.controlBar.getChild('FullscreenToggle');
+                            if (fs && fs.el()) fs.el().style.display = 'none';
+                        }
                     });
                     // iOS/Android Vollbild: Video.js kümmert sich darum
                 });
