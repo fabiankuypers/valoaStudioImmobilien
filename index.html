@@ -356,6 +356,15 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative; /* overlay play button */
         }
+
+        /* Ensure Video.js fills the container */
+        .video-container .video-js {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .video-container .vjs-tech { object-fit: cover; }
         
         /* Fallback placeholder for video */
         .video-placeholder {
@@ -1202,6 +1211,7 @@
             
             .hero-video-mobile .video-container {
                 height: 220px;
+                width: 100%;
                 margin-bottom: 0;
             }
             
@@ -1235,6 +1245,7 @@
             /* Mobile video styling */
             .video-container {
                 height: 220px;
+                width: 100%;
                 margin-bottom: 4px;
             }
 
@@ -2001,14 +2012,14 @@
             updateActive();
         })();
         
-        // Video.js: lazy Source + Autoplay on first click; download-Funktion unterbinden
+        // Video.js: lazy Source + Autoplay auf ersten Klick; Download verhindern
         (function initVideoJS() {
             function boot() {
                 if (!window.videojs) return;
 
                 document.querySelectorAll('video.video-js[data-src]').forEach(function(el){
                     const src = el.getAttribute('data-src');
-                    // Grundsetup über JS, damit wir die Quelle erst beim Play setzen
+                    // Grundsetup über JS, Quelle wird erst bei der ersten Interaktion gesetzt
                     const player = window.videojs(el, {
                         controls: true,
                         preload: 'none',
@@ -2026,24 +2037,34 @@
                     // Kontextmenü (Download) unterbinden
                     el.addEventListener('contextmenu', e => e.preventDefault());
 
-                    let sourceSet = false;
-                    function ensureSourceAndPlay() {
-                        if (!sourceSet) {
-                            player.src({ type: 'video/mp4', src });
-                            sourceSet = true;
+                    player.ready(function() {
+                        // Controls-Attribute der nativen Tech ergänzen
+                        const tech = player.el().querySelector('video');
+                        if (tech) {
+                            tech.setAttribute('playsinline','');
+                            tech.setAttribute('webkit-playsinline','');
+                            tech.setAttribute('controlsList','nodownload noplaybackrate noremoteplayback');
+                            tech.setAttribute('oncontextmenu','return false;');
                         }
-                        player.play().catch(()=>{});
-                    }
 
-                    // Beim ersten Play-Klick Quelle setzen und sofort starten
-                    player.on('play', function onFirstPlay(){
-                        player.off('play', onFirstPlay);
-                        ensureSourceAndPlay();
+                        let sourceSet = false;
+                        const ensureSourceAndPlay = () => {
+                            if (!sourceSet) {
+                                player.src({ type: 'video/mp4', src });
+                                sourceSet = true;
+                            }
+                            player.play().catch(()=>{});
+                        };
+
+                        // Erste Benutzerinteraktion: Big-Play-Button, Klick/Touch auf Player
+                        const big = player.getChild('BigPlayButton');
+                        if (big && big.el()) {
+                            big.el().addEventListener('click', (e)=>{ e.stopPropagation(); ensureSourceAndPlay(); }, { once: true });
+                            big.el().addEventListener('touchend', (e)=>{ e.stopPropagation(); ensureSourceAndPlay(); }, { once: true, passive: true });
+                        }
+                        player.el().addEventListener('click', ensureSourceAndPlay, { once: true });
+                        player.el().addEventListener('touchend', ensureSourceAndPlay, { once: true, passive: true });
                     });
-
-                    // Falls Nutzer den Big-Play-Button klickt, aber das Play-Event abgefangen wird
-                    player.on('firstplay', ensureSourceAndPlay);
-
                     // iOS/Android Vollbild: Video.js kümmert sich darum
                 });
             }
